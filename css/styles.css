@@ -1,0 +1,556 @@
+/* import any site fonts here */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300&family=Merriweather:ital,wght@1,700&display=swap');
+
+/* essentially a basic reset for the site styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* :root style for declaring global variables */
+:root {
+  --dark0: #121212;
+  --dark1: #1E1E1E;
+  --burgerMode: 725px;
+}
+
+/* site animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+
+@keyframes fadeInFromRight {
+  from {
+    opacity: 0%;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes fromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes toLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* set up the page to be columns */
+body {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background-color: var(--dark0);
+}
+
+@media (max-width: 725px) {
+  body {
+    /* flex-direction: column; */
+  }
+}
+
+/* container exists so that page can scroll on the right while the nav position is fixed */
+.nav-container {
+  position: relative;
+  width: 25%;
+}
+
+/* navigation styling */
+.navigation {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 100%;
+  background-color: var(--dark1);
+  box-shadow: 0 -10px 0 0 var(--dark0);
+  z-index: 0;
+}
+
+.navigation ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 50%;
+}
+
+.navigation ul li {
+  list-style: none;
+  text-align: center;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  font-family: Lato;
+  color: white;
+  transition: color 0.3s;
+  opacity: 87%;
+}
+
+.navigation ul li a:hover {
+  color: gold;
+}
+
+.navigation ul .active a {
+  color: gold;
+}
+
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background-color: var(--dark1);
+  /* animation: fromLeft 0.7s ease-out 0s 1 normal; */
+  animation-fill-mode: backwards;
+}
+
+.mobile-nav nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50%;
+}
+
+.mobile-nav nav ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.mobile-nav nav ul li {
+  list-style: none;
+  text-align: center;
+}
+
+.mobile-nav nav ul li a {
+  text-decoration: none;
+  color: white;
+  opacity: 87%;
+  font-family: Lato;
+}
+
+.mobile-nav nav ul li a:hover {
+  color: gold;
+}
+
+.mobile-nav ion-icon {
+  color: gold;
+  font-size: 32px;
+}
+
+.burger-menu .burger {
+
+}
+
+.burger-menu .close {
+  display: none;
+}
+
+.burger-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-bottom-right-radius: 150px;
+  background-color: gold;
+  padding-left: 2px;
+  z-index: 1;
+}
+
+.burger-menu:hover {
+  cursor: pointer;
+}
+
+.burger-menu ion-icon {
+  color: var(--dark0);
+  font-size: 64px;
+}
+
+@media (max-width: 725px) {
+  .nav-container {
+    display: none;
+  }
+  .navigation {
+    display: none;
+  }
+
+  .mobile-nav {
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+}
+
+@media (min-width: 725px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
+/* page content box styling */
+.page-content {
+  position: relative;
+  width: 75%;
+}
+
+@media (max-width: 725px) {
+  .page-content {
+    width: 100%;
+  }
+}
+
+/* home page styling */
+.home-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/jessebw.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  animation: fadeIn 0.7s ease-out 0.3s 1 normal;
+  animation-fill-mode: backwards;
+}
+
+.home-content .text {
+  /* width: 400px; */
+  margin-left: 100px;
+  animation: fadeInFromRight 0.7s ease-out 0.3s 1 normal;
+  animation-fill-mode: backwards;
+}
+
+.home-content .text h1 {
+  color: white;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 100;
+  font-size: 70px;
+}
+
+.home-content .text h2 {
+  color: white;
+  font-weight: lighter;
+}
+
+@media (max-width: 725px) {
+  .home-content {
+    justify-content: center;
+    background-position: 75%;
+  }
+  .home-content .text {
+    margin-left: 0px;
+  }
+  .home-content .text h1 {
+    font-size: 60px;
+  }
+}
+
+/* about me page styling */
+.aboutme-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 100px 100px 0 100px;
+}
+
+.aboutme-content .text {
+  max-width: 600px;
+  height: 100%;
+  animation: fadeInFromRight 0.7s ease-out 0.3s 1 normal;
+  animation-fill-mode: backwards;
+}
+
+.aboutme-content .text h2 {
+  color: white;
+  font-family: Lato;
+  opacity: 87%;
+}
+
+.aboutme-content .text h1 {
+  color: white;
+  /* font-family: Lato; */
+  /* font-style: italic; */
+  font-weight: normal;
+  font-size: 50px;
+  opacity: 87%;
+}
+
+.aboutme-content .text ul li {
+  list-style: none;
+  margin-bottom: 30px;
+  border-left: 1px solid gold;
+  padding-left: 10px;
+}
+
+.aboutme-content .text ul li p {
+  color: white;
+  font-family: Lato;
+  font-size: 20px;
+  opacity: 87%;
+}
+
+@media (max-width: 725px) {
+  .aboutme-content {
+    padding: 100px 50px 50px 50px;
+  }
+  .aboutme-content .text h1 {
+    font-size: 40px;
+  }
+}
+
+/* my work page styling */
+.mywork-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 100px 100px 0 100px;
+  animation: fadeInFromRight 0.7s ease-out 0.3s 1 normal;
+  animation-fill-mode: backwards;
+}
+
+.mywork-content h1 {
+  color: white;
+  font-weight: normal;
+  font-size: 50px;
+  opacity: 87%;
+  margin-bottom: 25px;
+}
+
+.mywork-content h2 {
+  color: white;
+  font-family: Lato;
+  opacity: 87%;
+  margin-bottom: 20px;
+}
+
+.mywork-content .college-work {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 700px;
+}
+
+.mywork-content .college-work .project {
+  width: 300px;
+  height: 200px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.mywork-content .college-work .project h2 {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: Lato;
+  opacity: 87%;
+}
+
+.mywork-content .college-work .project:nth-child(1) {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(37, 46, 47, 0),
+      rgb(14, 20, 27)
+    ),
+    url("../img/travelfly.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mywork-content .college-work .project:nth-child(2) {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(37, 46, 47, 0),
+      rgb(14, 20, 27)
+    ),
+    url("../img/eventsy.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mywork-content .college-work .project:nth-child(3) {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(37, 46, 47, 0),
+      rgb(14, 20, 27)
+    ),
+    url("../img/connect4.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mywork-content .college-work .project:nth-child(4) {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(37, 46, 47, 0),
+      rgb(14, 20, 27)
+    ),
+    url("../img/keurig.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 725px) {
+  .mywork-content {
+    padding: 100px 50px 50px 50px;
+  }
+  .mywork-content .college-work {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mywork-content .college-work .project {
+    width: 100%;
+  }
+}
+
+/* contact page styling */
+.contact-content {
+  width: 100%;
+  padding: 100px 100px 0 100px;
+  animation: fadeInFromRight 0.7s ease-out 0.3s 1 normal;
+  animation-fill-mode: backwards;
+}
+
+.contact-content h1 {
+  color: white;
+  font-weight: normal;
+  font-size: 50px;
+  opacity: 87%;
+  margin-bottom: 20px;
+}
+
+.contact-content .contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 640px;
+}
+
+.contact-content .contact-methods .method {
+  background-color: var(--dark1);
+  width: 300px;
+  height: 300px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  transition: background-color 0.3s;
+}
+
+.contact-content .contact-methods .method:hover {
+  background-color: gold;
+}
+
+.contact-content .contact-methods .method ion-icon {
+  color: gold;
+  font-size: 128px;
+}
+
+.contact-content .contact-methods .phone p {
+  color: var(--dark0);
+  font-size: 30px;
+  font-family: Lato;
+  position: absolute;
+  animation: fadeIn 0.3s linear 0s 1 normal;
+  animation-fill-mode: backwards;
+}
+
+.contact-content .contact-methods .email p {
+  color: var(--dark0);
+  font-size: 25px;
+  font-family: Lato;
+  position: absolute;
+  animation: fadeIn 0.3s linear 0s 1 normal;
+  animation-fill-mode: backwards;
+}
+
+.contact-content .contact-methods .social {
+  background-color: var(--dark1);
+  width: 100%;
+  height: 100px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.contact-content .contact-methods .social:hover {
+  background-color: gold;
+}
+
+.contact-content .contact-methods .social ion-icon {
+  color: gold;
+  font-size: 64px;
+}
+
+.contact-content .contact-methods .social p {
+  color: var(--dark0);
+  font-size: 25px;
+  font-family: Lato;
+  position: absolute;
+  animation: fadeIn 0.3s linear 0s 1 normal;
+  animation-fill-mode: backwards;
+}
+
+@media (max-width: 1060px) {
+  .contact-content {
+    padding: 100px 50px 50px 50px;
+  }
+  .contact-content .contact-methods {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
